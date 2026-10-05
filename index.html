@@ -172,8 +172,8 @@ button{font:inherit;color:inherit}
 
 <script>
 const games={
-  gas:{title:"Gas Station",icon:"GS",text:"Run the station, manage risky customers, track known officers and rival gangs, and stay out of trouble."},
-  shake:{title:"ShakeStation",icon:"SS",text:"Build customer orders with S/M/L shakes, vanilla/chocolate/strawberry bases and syrups, plus toppings like cookies and strawberries."}
+  gas:{title:"Gas Station",icon:"GS",text:"Run the station, manage risky customers, track known officers and rival gangs, and stay out of trouble.",url:null},
+  shake:{title:"ShakeStation",icon:"SS",text:"Run a fast-paced burger and milkshake shop: take orders, grill patties, stack toppings, pour and stir shakes, finish them with syrup and toppings, then serve for a score.",url:"https://focustap.github.io/ShakeStation/"}
 };
 let selected="gas";
 function selectGame(id){
@@ -188,7 +188,11 @@ document.querySelectorAll("[data-game]").forEach(el=>{
   el.addEventListener("click",()=>selectGame(el.dataset.game));
   el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();selectGame(el.dataset.game)}})
 });
-document.getElementById("play").addEventListener("click",()=>alert("Launch hook for "+games[selected].title+" goes here."));
+document.getElementById("play").addEventListener("click",()=>{
+  const game=games[selected];
+  if(game.url){ window.location.href=game.url; return; }
+  alert(game.title+" is not playable yet.");
+});
 </script>
 </body>
 </html>
