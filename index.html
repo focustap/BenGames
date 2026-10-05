@@ -63,7 +63,8 @@ button{font:inherit;color:inherit}
 .cards{display:grid;grid-template-columns:repeat(2,minmax(230px,1fr));gap:18px;max-width:690px}
 .card{position:relative;aspect-ratio:3/4;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#111722;cursor:pointer;box-shadow:0 16px 34px rgba(0,0,0,.3);transition:.18s}
 .card:hover{transform:translateY(-5px);border-color:#50c4ff;box-shadow:0 24px 48px rgba(0,0,0,.4)}
-.card svg{position:absolute;inset:0;width:100%;height:100%}
+.card.selected{border:2px solid #50c4ff;box-shadow:0 0 0 2px rgba(80,196,255,.16),0 22px 46px rgba(0,0,0,.45)}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .card:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(6,8,13,.98) 0%,rgba(6,8,13,.62) 20%,transparent 62%)}
 .star{position:absolute;z-index:3;left:11px;top:9px;color:var(--yellow);font-size:18px;text-shadow:0 2px 8px #000}
 .copy{position:absolute;z-index:4;left:16px;right:16px;bottom:16px}
@@ -130,50 +131,14 @@ button{font:inherit;color:inherit}
   <div class="toolbar"><span>Sort by: <b>Featured⌄</b></span><span>2 games</span></div>
 
   <div class="cards">
-    <article class="card" data-game="gas" tabindex="0" aria-label="Gas Station">
-      <svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <linearGradient id="gasSky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#07101f"/><stop offset=".55" stop-color="#152a43"/><stop offset="1" stop-color="#12100d"/></linearGradient>
-          <linearGradient id="gasGlow" x1="0" x2="1"><stop stop-color="#f6bd45"/><stop offset=".5" stop-color="#fff0a8"/><stop offset="1" stop-color="#e77e30"/></linearGradient>
-        </defs>
-        <rect width="600" height="800" fill="url(#gasSky)"/>
-        <circle cx="465" cy="145" r="74" fill="#dfe9ff" opacity=".12"/>
-        <rect x="0" y="530" width="600" height="270" fill="#121317"/>
-        <rect x="48" y="302" width="500" height="38" rx="4" fill="url(#gasGlow)"/>
-        <rect x="68" y="340" width="12" height="210" fill="#c9d0d4"/><rect x="516" y="340" width="12" height="210" fill="#c9d0d4"/>
-        <rect x="105" y="380" width="385" height="170" fill="#202633"/>
-        <rect x="128" y="403" width="150" height="106" fill="#0f1a25"/><rect x="303" y="403" width="155" height="106" fill="#101b25"/>
-        <rect x="128" y="403" width="150" height="7" fill="#43b7ff" opacity=".8"/><rect x="303" y="403" width="155" height="7" fill="#43b7ff" opacity=".8"/>
-        <rect x="210" y="548" width="45" height="74" rx="5" fill="#293543"/><rect x="340" y="548" width="45" height="74" rx="5" fill="#293543"/>
-        <rect x="218" y="558" width="29" height="15" fill="#ffd55f"/><rect x="348" y="558" width="29" height="15" fill="#ffd55f"/>
-        <ellipse cx="300" cy="694" rx="245" ry="50" fill="#07090d" opacity=".6"/>
-        <path d="M110 659h300l58 44H79z" fill="#17202a"/><rect x="137" y="640" width="210" height="56" rx="20" fill="#1f2830"/>
-        <circle cx="172" cy="699" r="30" fill="#080a0c"/><circle cx="371" cy="699" r="30" fill="#080a0c"/>
-        <rect x="390" y="660" width="37" height="8" rx="4" fill="#ff3e3e"/><rect x="427" y="660" width="37" height="8" rx="4" fill="#3b8cff"/>
-        <rect x="0" y="0" width="600" height="800" fill="url(#gasSky)" opacity=".12"/>
-      </svg>
+    <article class="card selected" data-game="gas" tabindex="0" aria-label="Gas Station">
+      <img src="assets/dezs-gas.png" alt="Dez's Gas pixel art">
       <div class="star">★</div>
       <div class="copy"><div class="logo gas">Gas<br>Station</div><p>Management · Crime · Strategy</p></div>
     </article>
 
     <article class="card" data-game="shake" tabindex="0" aria-label="ShakeStation">
-      <svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <linearGradient id="shakeBg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#501b59"/><stop offset=".45" stop-color="#aa467c"/><stop offset="1" stop-color="#f5a3c8"/></linearGradient>
-          <linearGradient id="cup" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff4fb"/><stop offset="1" stop-color="#f6c3dc"/></linearGradient>
-        </defs>
-        <rect width="600" height="800" fill="url(#shakeBg)"/>
-        <circle cx="92" cy="132" r="75" fill="#fff" opacity=".08"/><circle cx="520" cy="222" r="110" fill="#fff" opacity=".06"/>
-        <rect x="60" y="270" width="480" height="310" rx="24" fill="#f7d8e8" opacity=".9"/>
-        <rect x="75" y="287" width="450" height="72" rx="14" fill="#35243e"/>
-        <text x="300" y="337" text-anchor="middle" font-family="Arial Black,Arial" font-size="43" fill="#ffb5db">SHAKE STATION</text>
-        <rect x="100" y="390" width="400" height="135" rx="18" fill="#fff0f7"/>
-        <circle cx="165" cy="456" r="36" fill="#865637"/><circle cx="250" cy="456" r="36" fill="#f3e1be"/><circle cx="335" cy="456" r="36" fill="#eb6f95"/><circle cx="420" cy="456" r="36" fill="#6b3d2c"/>
-        <path d="M205 623h190l-27 150H232z" fill="url(#cup)"/><path d="M198 616h204l-8 28H206z" fill="#fff8fc"/>
-        <path d="M250 614c9-55 99-55 109 0" fill="#fff5fb"/><circle cx="304" cy="574" r="54" fill="#fff5fb"/>
-        <circle cx="270" cy="568" r="12" fill="#e74d74"/><circle cx="327" cy="551" r="12" fill="#6c3b2c"/><circle cx="345" cy="585" r="10" fill="#e74d74"/>
-        <rect x="332" y="485" width="12" height="112" rx="6" transform="rotate(11 338 541)" fill="#6dd6e6"/>
-      </svg>
+      <img src="assets/shakestation.png" alt="ShakeStation game art">
       <div class="star">★</div>
       <div class="copy"><div class="logo shake">Shake<br>Station</div><p>Restaurant · Time Management</p></div>
     </article>
@@ -217,6 +182,7 @@ function selectGame(id){
   document.getElementById("detailIcon").textContent=games[id].icon;
   document.getElementById("detailText").textContent=games[id].text;
   document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("active",x.dataset.game===id));
+  document.querySelectorAll(".card").forEach(x=>x.classList.toggle("selected",x.dataset.game===id));
 }
 document.querySelectorAll("[data-game]").forEach(el=>{
   el.addEventListener("click",()=>selectGame(el.dataset.game));
