@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+<defs>
+<linearGradient id="wall" x2="0" y2="1"><stop stop-color="#b9e6ed"/><stop offset="1" stop-color="#f5d5df"/></linearGradient>
+<linearGradient id="counter" x2="0" y2="1"><stop stop-color="#ffe8df"/><stop offset="1" stop-color="#dc9dac"/></linearGradient>
+<linearGradient id="pink" x2="0" y2="1"><stop stop-color="#f9c9d5"/><stop offset="1" stop-color="#d66b95"/></linearGradient>
+<filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#77536d" flood-opacity=".35"/></filter>
+</defs>
+<rect width="1200" height="675" rx="26" fill="url(#wall)"/>
+<g opacity=".35" stroke="#fff"><path d="M0 120H1200M0 240H1200M0 360H1200M0 480H1200M0 600H1200" stroke-width="5"/><path d="M100 0V480M300 0V480M500 0V480M700 0V480M900 0V480M1100 0V480" stroke-width="4"/></g>
+<path d="M0 479H1200V675H0Z" fill="url(#counter)"/><rect y="478" width="1200" height="19" fill="#fff2ef"/>
+<g filter="url(#shadow)">
+<rect x="112" y="76" width="967" height="215" rx="61" fill="#aa4d71" stroke="#f6a3b7" stroke-width="13"/>
+<rect x="133" y="89" width="925" height="190" rx="49" fill="#893d5f" stroke="#d9799b" stroke-width="5"/>
+<text x="594" y="187" fill="#fff5e0" text-anchor="middle" font-family="Arial,sans-serif" font-size="92" font-weight="900" letter-spacing="-2">SHAKESTATION</text>
+<text x="597" y="229" fill="#fbc3d1" text-anchor="middle" font-family="Arial,sans-serif" font-size="26" font-weight="900" letter-spacing="9">BURGERS · SHAKES · BIG DREAMS</text>
+</g>
+<g filter="url(#shadow)" transform="translate(210,323)">
+<ellipse cx="175" cy="210" rx="164" ry="31" fill="#ba9380" opacity=".45"/>
+<path d="M22 167Q182 134 332 167L318 204Q180 247 34 207Z" fill="#c78241" stroke="#9e5d32" stroke-width="10"/>
+<ellipse cx="177" cy="166" rx="160" ry="30" fill="#f6be72"/>
+<path d="M31 145Q82 116 137 141Q199 103 254 141Q289 116 323 148" fill="none" stroke="#74b249" stroke-width="32" stroke-linecap="round"/>
+<ellipse cx="175" cy="147" rx="151" ry="24" fill="#76412f" stroke="#593027" stroke-width="10"/>
+<path d="M41 131L263 121L313 159L90 165Z" fill="#ffd45d" stroke="#eca43f" stroke-width="8"/>
+<ellipse cx="172" cy="117" rx="160" ry="22" fill="#ea554d" stroke="#b83636" stroke-width="7"/>
+<ellipse cx="180" cy="105" rx="160" ry="25" fill="#78b44f" stroke="#54953c" stroke-width="8"/>
+<path d="M18 97Q28 12 174 15Q320 17 335 99Q170 130 18 97Z" fill="#e79b50" stroke="#b86e38" stroke-width="10"/>
+<path d="M34 94Q43 32 170 27Q280 26 316 92" fill="#ffd085"/>
+<g fill="#fff4c5"><ellipse cx="94" cy="60" rx="11" ry="5" transform="rotate(-21 94 60)"/><ellipse cx="166" cy="44" rx="10" ry="5" transform="rotate(18 166 44)"/><ellipse cx="236" cy="60" rx="11" ry="5" transform="rotate(-25 236 60)"/><ellipse cx="137" cy="86" rx="10" ry="5" transform="rotate(30 137 86)"/></g>
+</g>
+<g filter="url(#shadow)" transform="translate(758,330)">
+<ellipse cx="114" cy="210" rx="123" ry="30" fill="#ad7d86" opacity=".4"/>
+<path d="M15 41H207L179 231H45Z" fill="#fff9ef" opacity=".83" stroke="#fff" stroke-width="10"/>
+<path d="M29 86H193L173 218H52Z" fill="#b87e67" stroke="#9b5847" stroke-width="6"/>
+<path d="M43 91L69 211M79 89L101 215M135 90L152 215M180 95L166 203" stroke="#ef8eaf" stroke-width="11"/>
+<ellipse cx="109" cy="85" rx="81" ry="19" fill="#e8ae9b"/>
+<path d="M30 85Q39 59 60 61Q50 39 80 42Q85 14 107 21Q128 11 141 43Q171 35 169 62Q193 72 185 85Z" fill="#fff7ed" stroke="#f5dae4" stroke-width="9"/>
+<path d="M137 42L183 -2" stroke="#e76594" stroke-width="15" stroke-linecap="round"/>
+<circle cx="109" cy="161" r="31" fill="#df5b93"/><text x="109" y="172" fill="white" text-anchor="middle" font-family="Arial" font-size="26" font-weight="900">SS</text>
+<path d="M130 39Q142 13 153 20" fill="none" stroke="#5d944f" stroke-width="8"/><circle cx="128" cy="36" r="13" fill="#cf3656"/>
+</g>
+<g fill="#fff5df" opacity=".8"><circle cx="97" cy="368" r="7"/><circle cx="1086" cy="367" r="8"/><path d="M1008 319l9 21 21 9-21 9-9 21-9-21-21-9 21-9Z"/></g>
+</svg>
