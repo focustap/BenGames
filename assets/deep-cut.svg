@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="title desc">
+<title id="title">DEEP CUT</title><desc id="desc">Turquoise Deep Cut lettering above a stylized subterranean drill</desc>
+<defs>
+<linearGradient id="bg" x2="0" y2="1"><stop stop-color="#193b51"/><stop offset=".5" stop-color="#132336"/><stop offset="1" stop-color="#080e18"/></linearGradient>
+<linearGradient id="metal"><stop stop-color="#287f99"/><stop offset=".5" stop-color="#a0f7e8"/><stop offset="1" stop-color="#2c829d"/></linearGradient>
+</defs>
+<rect width="640" height="400" fill="url(#bg)"/>
+<g opacity=".2" stroke="#a1c8d8" stroke-width="2">
+<path d="M0 130H640M0 210H640M0 295H640M100 0v400M245 0v400M395 0v400M540 0v400"/>
+</g>
+<path d="M232 210h175v190H232z" fill="#071523" stroke="#2c4255" stroke-width="8"/>
+<path d="M270 230h100v85H270z" fill="url(#metal)" stroke="#103e59" stroke-width="8"/>
+<path d="M281 247h78v27h-78z" fill="#133046" stroke="#a7f1df" stroke-width="3"/>
+<path d="M279 308h82l-41 76z" fill="#a4cbd2" stroke="#26627d" stroke-width="7"/>
+<path d="M281 327h77M294 347h50" stroke="#4e8ca5" stroke-width="8"/>
+<path d="M180 270l23-22 13 24-23 25zM448 293l-25-20 14-25 24 18z" fill="#58d3cb" opacity=".6"/>
+<text x="34" y="109" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="96" letter-spacing="-6" fill="#e5f9fb">DEEP</text>
+<text x="35" y="200" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="102" letter-spacing="-6" fill="#71e2df">CUT.</text>
+<text x="39" y="241" font-family="Arial,Helvetica,sans-serif" font-size="16" font-weight="700" letter-spacing="5" fill="#b6d7de">HOW DEEP DOES YOUR KNOWLEDGE GO?</text>
+</svg>
