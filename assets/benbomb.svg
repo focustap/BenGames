@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600" role="img" aria-label="BENBOMB game cover, neon bomb and glowing letters">
+<defs>
+<linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#261d35"/><stop offset=".52" stop-color="#13192c"/><stop offset="1" stop-color="#0b101c"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#fa528b" stop-opacity=".38"/><stop offset="1" stop-color="#f54584" stop-opacity="0"/></radialGradient>
+<radialGradient id="sphere" cx=".28" cy=".25" r=".85"><stop stop-color="#60546f"/><stop offset=".52" stop-color="#302b43"/><stop offset="1" stop-color="#131321"/></radialGradient>
+<linearGradient id="pink" x1="0" x2="1"><stop stop-color="#ff649e"/><stop offset="1" stop-color="#ff9162"/></linearGradient>
+<filter id="blur"><feGaussianBlur stdDeviation="26"/></filter>
+<filter id="shadow"><feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#020206" flood-opacity=".7"/></filter>
+</defs>
+<rect width="960" height="600" fill="url(#bg)"/>
+<path d="M-60 550 390 90M250 660 720 -60M580 670 1050 0" stroke="#914d86" opacity=".14" stroke-width="2"/>
+<g opacity=".7" fill="#fc80b8"><circle cx="91" cy="117" r="3"/><circle cx="836" cy="165" r="4"/><circle cx="768" cy="402" r="2"/><circle cx="160" cy="392" r="3"/><circle cx="920" cy="510" r="2"/></g>
+<ellipse cx="480" cy="280" rx="320" ry="280" fill="url(#glow)"/>
+<g filter="url(#shadow)">
+<path d="M485 124c-15-31 0-57 33-71" fill="none" stroke="#d89c67" stroke-width="14" stroke-linecap="round"/>
+<path d="m527 55 24-27-4 36 30 1-28 16-3 33-17-25-28 13 11-31-29-22z" fill="#ffcf79"/>
+<rect x="450" y="129" width="69" height="45" rx="9" fill="#555069" stroke="#1b1729" stroke-width="10"/>
+<circle cx="480" cy="330" r="191" fill="url(#sphere)" stroke="#28253c" stroke-width="15"/>
+<ellipse cx="421" cy="215" rx="69" ry="28" fill="#ded1e9" opacity=".1" transform="rotate(-30 421 215)"/>
+<circle cx="480" cy="330" r="167" stroke="#ffffff" stroke-opacity=".08" fill="none"/>
+<text x="480" y="365" font-family="Arial,Helvetica,sans-serif" font-size="112" font-weight="900" text-anchor="middle" fill="#f7effa" letter-spacing="-5">ZZ</text>
+</g>
+<text x="480" y="565" font-family="Arial Black,Impact,Arial,sans-serif" font-weight="900" font-size="89" letter-spacing="-2" text-anchor="middle" fill="#f7f5fd">BEN<tspan fill="url(#pink)">BOMB</tspan><tspan fill="#ffcb73">!</tspan></text>
+</svg>
