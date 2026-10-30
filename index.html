@@ -2,197 +2,413 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BenGames</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101822">
+<meta name="description" content="BenGames is a home for small, polished browser games.">
+<title>BenGames — Library</title>
 <style>
-:root{
-  --bg:#0b0f17;--panel:#111722;--panel2:#161d29;--line:#263143;--text:#eef5ff;
-  --muted:#8795aa;--blue:#19a7ff;--blue2:#087fd7;--green:#34d17b;--yellow:#ffd45d
+:root {
+  color-scheme: dark;
+  --bg: #0d141c;
+  --surface: #151f2a;
+  --surface-raised: #1b2936;
+  --border: #2a3948;
+  --text: #e8f0f7;
+  --muted: #94a7b8;
+  --subtle: #6d8294;
+  --accent: #66c0f4;
+  --accent-strong: #a9defc;
 }
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;background:
-  radial-gradient(circle at 18% 28%,rgba(17,119,255,.25),transparent 33%),
-  radial-gradient(circle at 78% 0,rgba(116,69,255,.14),transparent 34%),
-  linear-gradient(145deg,#0b1020,#080b12 58%,#06080c);
-  color:var(--text);font:14px Inter,Segoe UI,system-ui,sans-serif;overflow:hidden
+* { box-sizing: border-box; }
+html { min-height: 100%; }
+body {
+  min-height: 100vh; margin: 0; color: var(--text);
+  font: 14px/1.55 "Segoe UI", Inter, system-ui, sans-serif;
+  background: var(--bg);
 }
-button{font:inherit;color:inherit}
-.shell{
-  width:min(1500px,calc(100vw - 52px));height:min(900px,calc(100vh - 52px));margin:26px auto;
-  border:1px solid rgba(255,255,255,.09);border-radius:10px;overflow:hidden;background:rgba(12,17,27,.95);
-  box-shadow:0 30px 80px rgba(0,0,0,.48)
+button, input { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px;
 }
-.topbar{height:72px;display:flex;align-items:center;padding:0 24px;border-bottom:1px solid var(--line);background:#0d121c}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.08em;margin-right:34px}
-.brand-logo{width:34px;height:34px;border-radius:50%;border:2px solid var(--blue);display:grid;place-items:center;color:var(--blue);font-size:18px}
-.nav{height:100%;display:flex;gap:26px}
-.nav button{height:100%;border:0;background:transparent;color:#8c9ab0;font-weight:800;cursor:pointer;position:relative}
-.nav button.active{color:white}
-.nav button.active:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--blue)}
-.topfill{flex:1}
-.icon{width:34px;height:34px;border:1px solid var(--line);background:#151c27;border-radius:6px;margin-left:8px;display:grid;place-items:center;color:#92a0b5}
-.profile{display:flex;align-items:center;gap:9px;margin-left:14px}
-.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#158fff,#7757ff);display:grid;place-items:center;font-weight:900}
-.status{font-size:12px;color:#6f7e92}.dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:5px}
-
-.gamebar{height:58px;background:#141b27;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 18px}
-.allgames{height:100%;border:0;border-bottom:2px solid var(--blue);background:#192331;padding:0 16px;font-weight:900}
-.chips{display:flex;gap:8px;margin-left:14px}
-.chip{width:42px;height:42px;border-radius:7px;border:1px solid transparent;background:#202939;display:grid;place-items:center;font-weight:950;cursor:pointer;transition:.16s}
-.chip:hover,.chip.active{border-color:#5cc8ff;transform:translateY(-2px);background:#263349}
-.chip.gas{color:#ffdf78}.chip.shake{color:#ff9bd3}
-
-.layout{height:calc(100% - 130px);display:grid;grid-template-columns:185px minmax(0,1fr) 270px}
-.left{border-right:1px solid var(--line);padding:18px 13px;background:#0e141e}
-.left h4{margin:0 10px 8px;color:#6f7e94;font-size:11px;text-transform:uppercase;letter-spacing:.12em}
-.left button{width:100%;border:0;background:transparent;color:#9ba8ba;text-align:left;padding:11px 12px;border-radius:6px;display:flex;justify-content:space-between;cursor:pointer}
-.left button.active{background:rgba(25,167,255,.12);box-shadow:inset 2px 0 var(--blue);color:white}
-.count{color:#607189}
-
-.main{overflow:auto;padding:22px}
-.main::-webkit-scrollbar,.friends-scroll::-webkit-scrollbar{width:8px}
-.main::-webkit-scrollbar-thumb,.friends-scroll::-webkit-scrollbar-thumb{background:#263247;border-radius:10px}
-.hero-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:21px}
-.hero-box{height:92px;border:1px solid var(--line);border-radius:7px;background:linear-gradient(120deg,#172131,#111722);display:flex;align-items:center;justify-content:center}
-.hero-box strong{font-size:21px;letter-spacing:.08em}.hero-box span{display:block;color:#7f90a6;font-size:12px;margin-top:4px;text-align:center}
-
-.toolbar{display:flex;align-items:center;justify-content:space-between;color:#8b9aaf;margin-bottom:14px}
-.toolbar b{color:#dbe8f8}
-.cards{display:grid;grid-template-columns:repeat(2,minmax(230px,1fr));gap:18px;max-width:690px}
-.card{position:relative;aspect-ratio:3/4;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#111722;cursor:pointer;box-shadow:0 16px 34px rgba(0,0,0,.3);transition:.18s}
-.card:hover{transform:translateY(-5px);border-color:#50c4ff;box-shadow:0 24px 48px rgba(0,0,0,.4)}
-.card.selected{border:2px solid #50c4ff;box-shadow:0 0 0 2px rgba(80,196,255,.16),0 22px 46px rgba(0,0,0,.45)}
-.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.card:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(6,8,13,.98) 0%,rgba(6,8,13,.62) 20%,transparent 62%)}
-.star{position:absolute;z-index:3;left:11px;top:9px;color:var(--yellow);font-size:18px;text-shadow:0 2px 8px #000}
-.copy{position:absolute;z-index:4;left:16px;right:16px;bottom:16px}
-.logo{font-weight:1000;line-height:.9;text-transform:uppercase;text-shadow:0 4px 16px #000}
-.logo.gas{font-size:31px;color:#ffe18a}.logo.shake{font-size:34px;color:#ffb0dc}
-.copy p{margin:8px 0 0;color:#a9b5c5;font-size:12px}
-
-.detail{margin-top:18px;border:1px solid var(--line);background:#101722;border-radius:8px;min-height:104px;display:flex;align-items:center;padding:17px;gap:16px;max-width:920px}
-.detail-icon{width:68px;height:68px;border-radius:12px;background:#1a2433;display:grid;place-items:center;font-size:27px;font-weight:1000}
-.detail h2{font-size:19px;margin:0 0 5px}.detail p{margin:0;color:#8595aa}
-.play{margin-left:auto;border:0;border-radius:4px;background:linear-gradient(#18aaff,#087fd8);font-weight:950;padding:13px 28px;cursor:pointer;box-shadow:0 7px 20px rgba(0,138,255,.23)}
-.play:hover{filter:brightness(1.1)}
-
-.social{border-left:1px solid var(--line);background:#0f151f;display:flex;flex-direction:column}
-.social-top{height:55px;padding:10px;border-bottom:1px solid var(--line)}
-.social input{width:100%;height:35px;background:#161f2c;border:1px solid var(--line);border-radius:5px;padding:0 10px;color:white;outline:0}
-.friends-scroll{overflow:auto;padding:10px}
-.group{font-size:11px;color:#728198;text-transform:uppercase;letter-spacing:.1em;margin:9px 7px}
-.friend{display:flex;align-items:center;gap:9px;padding:8px 7px;border-radius:6px}
-.friend:hover{background:rgba(255,255,255,.035)}
-.mini{width:31px;height:31px;border-radius:50%;background:#263247;display:grid;place-items:center;font-weight:900}
-.fmeta{min-width:0}.fname{font-size:13px}.fstate{font-size:11px;color:#73839a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.presence{margin-left:auto;width:7px;height:7px;border-radius:50%;background:var(--green)}
-.away .presence{background:#f1c54f}.offline{opacity:.55}.offline .presence{background:#58677d}
-.chat{margin:auto 10px 10px;border:1px solid var(--line);background:#182130;text-align:center;border-radius:5px;padding:11px;color:#aeb9ca;font-size:12px;font-weight:800}
-
-@media(max-width:1000px){.layout{grid-template-columns:160px 1fr}.social{display:none}.shell{width:100vw;height:100vh;margin:0;border-radius:0}}
-@media(max-width:720px){.left{display:none}.layout{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.profile span{display:none}}
+button { cursor: pointer; }
+.app-header {
+  height: 72px; padding: 0 clamp(20px, 3.2vw, 52px);
+  display: flex; align-items: center; gap: 42px;
+  border-bottom: 1px solid #273545;
+  background: #111a24;
+}
+.brand {
+  display: inline-flex; align-items: center; gap: 12px;
+  text-decoration: none; color: #fff; flex: 0 0 auto;
+}
+.brand-mark {
+  width: 38px; height: 38px; display: grid; place-items: center;
+  border-radius: 9px; font-size: 21px; font-weight: 900; letter-spacing: -.08em;
+  color: #091621; background: linear-gradient(135deg, #a6e2ff, #3b95db 75%);
+  box-shadow: 0 4px 18px #1b89d53b;
+}
+.brand-name { font-size: 20px; font-weight: 850; letter-spacing: -.045em; }
+.brand-name span { color: var(--accent); }
+.top-nav { height: 100%; display: flex; align-items: stretch; }
+.nav-current {
+  height: 100%; display: flex; align-items: center; position: relative;
+  color: #eef8ff; font-size: 12px; font-weight: 800; letter-spacing: .15em;
+}
+.nav-current:after {
+  content: ""; position: absolute; height: 3px; background: var(--accent);
+  bottom: 0; left: 0; right: 0;
+}
+.header-end {
+  margin-left: auto; color: #8399ae; font-size: 11px;
+  letter-spacing: .12em; font-weight: 700; white-space: nowrap;
+}
+.workspace { display: grid; grid-template-columns: 246px minmax(0, 1fr); min-height: calc(100vh - 72px); }
+.sidebar {
+  background: #121b25; border-right: 1px solid #273545;
+  padding: 26px 15px 20px; display: flex; flex-direction: column; gap: 24px;
+}
+.sidebar-label {
+  margin: 0 12px 10px; font-size: 10px; font-weight: 800; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--subtle);
+}
+.sidebar-nav { display: grid; gap: 5px; }
+.sidebar-nav button {
+  width: 100%; min-height: 42px; border: 1px solid transparent;
+  background: transparent; border-radius: 5px; color: #a4b7c8;
+  display: flex; align-items: center; gap: 12px;
+  padding: 9px 12px; text-align: left; font-weight: 650;
+}
+.sidebar-nav button:hover { color: #eff8ff; background: #1c2a38; }
+.sidebar-nav button.active {
+  color: #eaf7ff; background: linear-gradient(90deg, #234562, #1b2d3d);
+  border-left: 3px solid var(--accent); padding-left: 10px;
+}
+.sidebar-nav svg { width: 17px; height: 17px; flex-shrink: 0; }
+.nav-count {
+  margin-left: auto; font-size: 12px; color: #91b9d2;
+  font-variant-numeric: tabular-nums;
+}
+.shelf { flex: 1; }
+.sidebar-empty {
+  margin: 0 12px; border-top: 1px solid #283644; padding-top: 15px;
+  font-size: 12px; line-height: 1.7; color: #778ea2;
+}
+.shelf-list { display: grid; gap: 2px; }
+.shelf-link {
+  display: block; padding: 8px 12px; border-radius: 4px;
+  color: #b3c9da; text-decoration: none;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.shelf-link:hover { color: #fff; background: #213548; }
+.sidebar-bottom {
+  border-top: 1px solid #293847; padding: 18px 11px 0;
+  color: #7890a5; font-size: 11px; line-height: 1.65;
+}
+.sidebar-bottom strong { display: block; color: #aec8dc; margin-bottom: 3px; font-size: 12px; }
+.main {
+  min-width: 0; padding: clamp(24px, 4vw, 56px);
+  background:
+    radial-gradient(ellipse 70% 450px at 80% -140px, #2346655c, transparent),
+    linear-gradient(180deg, #152332 0, #0d141c 580px);
+}
+.inner { max-width: 1150px; margin: auto; }
+.hero {
+  min-height: 316px; overflow: hidden; position: relative;
+  display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(240px, .88fr);
+  align-items: center; border: 1px solid #3a566f;
+  border-radius: 10px; background:
+    radial-gradient(ellipse 65% 95% at 90% 45%, #2c65866e, transparent),
+    linear-gradient(120deg, #1e3548, #172636 60%, #152738);
+  box-shadow: 0 20px 60px #0003;
+}
+.hero:before {
+  content: ""; position: absolute; inset: 0; opacity: .12;
+  background-image: linear-gradient(#b8deed2a 1px, transparent 1px), linear-gradient(90deg, #b8deed2a 1px, transparent 1px);
+  background-size: 34px 34px; pointer-events: none;
+}
+.hero-copy { padding: clamp(30px, 5vw, 58px); position: relative; z-index: 1; }
+.eyebrow {
+  color: #91d6fb; font-size: 11px; font-weight: 850;
+  letter-spacing: .16em; text-transform: uppercase;
+}
+.hero h1 {
+  font-size: clamp(32px, 3.9vw, 55px); letter-spacing: -.055em;
+  line-height: 1.08; max-width: 540px; margin: 16px 0;
+}
+.hero p { color: #b9d0e0; font-size: 15px; max-width: 475px; margin: 0; line-height: 1.8; }
+.hero-art {
+  align-self: stretch; min-height: 310px; display: grid; place-items: center;
+  position: relative; overflow: hidden;
+}
+.art-glow {
+  position: absolute; width: 290px; height: 290px; border-radius: 50%;
+  background: #66c0f42b; filter: blur(48px);
+}
+.art-frame {
+  width: min(290px, 80%); aspect-ratio: 1.1; border: 1px solid #79c7f766;
+  border-radius: 20px; transform: rotate(-9deg); position: relative;
+  background: linear-gradient(145deg, #2c5372, #14283e);
+  box-shadow: 16px 22px 0 #0918248a, 0 30px 65px #0008;
+}
+.art-frame:before {
+  content: ""; position: absolute; inset: 16px;
+  border: 1px solid #6ca8cc5c; border-radius: 12px;
+  background: linear-gradient(145deg, #19364c, #0f2030);
+}
+.pixel { position: absolute; z-index: 1; border-radius: 5px; }
+.pixel.one { width: 75px; height: 75px; top: 28%; left: 21%; background: #69c4f2; box-shadow: 10px 10px 0 #3277af; }
+.pixel.two { width: 47px; height: 47px; right: 21%; bottom: 23%; background: #d8e7ad; box-shadow: 8px 8px 0 #6e946c; }
+.pixel.three { width: 25px; height: 25px; right: 25%; top: 24%; background: #ffbb9d; box-shadow: 5px 5px 0 #b56c6a; }
+.spark { position: absolute; background: #aeeaff; opacity: .8; width: 9px; height: 9px; transform: rotate(45deg); }
+.spark.a { top: 13%; right: 16%; }.spark.b { bottom: 15%; left: 7%; width: 6px; height: 6px; }
+.section-heading {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin: 38px 0 17px;
+}
+.section-heading h2 { font-size: 22px; line-height: 1.3; letter-spacing: -.025em; margin: 0; }
+.section-meta { font-size: 12px; color: #90a8bc; }
+.library-panel {
+  min-height: 250px; border: 1px solid var(--border); border-radius: 8px;
+  background: linear-gradient(155deg, #182633, #121c27 80%);
+  padding: 30px;
+}
+.empty-state { min-height: 190px; display: flex; align-items: center; gap: 26px; }
+.empty-symbol {
+  width: 96px; height: 96px; flex: 0 0 96px; display: grid; place-items: center;
+  color: #8bc9ed; border: 1px solid #365670; border-radius: 18px;
+  background: #193047;
+}
+.empty-symbol svg { width: 50px; height: 50px; }
+.empty-copy h3 { font-size: 21px; margin: 0 0 8px; letter-spacing: -.025em; }
+.empty-copy p { color: #9eb3c4; line-height: 1.8; max-width: 510px; margin: 0; font-size: 14px; }
+.no-match { color: #a9c1d3; text-align: center; padding: 42px 0; }
+.library-tools { display: flex; gap: 12px; align-items: center; margin-bottom: 20px; }
+.library-tools[hidden], [hidden] { display: none !important; }
+.search {
+  width: min(100%, 340px); border-radius: 5px; color: #e7f3fd;
+  background: #0c1722; border: 1px solid #345066; padding: 11px 13px;
+}
+.search::placeholder { color: #849caf; }
+.game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 17px; }
+.game-card {
+  display: flex; flex-direction: column; text-decoration: none; color: var(--text);
+  border: 1px solid #375065; border-radius: 6px; overflow: hidden;
+  background: #1b2c3b; transition: transform .18s, border-color .18s;
+}
+.game-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+.game-card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; background: #182d40; }
+.game-card-body { padding: 16px; }
+.game-card h3 { margin: 0 0 6px; font-size: 17px; }
+.game-card p { margin: 0; color: #98b0c2; font-size: 12px; }
+.game-card small { display: inline-block; margin-top: 13px; color: #8ed3f9; font-weight: 800; letter-spacing: .05em; }
+.principles { margin-top: 38px; }
+.principles h2 { font-size: 18px; margin: 0 0 15px; color: #c7d9e8; }
+.principle-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.principle {
+  border: 1px solid #2b3b4c; border-radius: 6px;
+  background: #15212c; padding: 19px;
+}
+.principle span { color: var(--accent); font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+.principle h3 { margin: 6px 0; font-size: 15px; }
+.principle p { margin: 0; color: #90a6b8; font-size: 12px; line-height: 1.7; }
+.footer { margin-top: 42px; color: #657f91; font-size: 12px; }
+@media (max-width: 920px) {
+  .workspace { grid-template-columns: 195px minmax(0, 1fr); }
+  .hero { grid-template-columns: 1fr 200px; }
+  .hero-copy { padding: 30px; }
+  .art-frame { width: 175px; }
+  .hero-art { min-height: 240px; }
+}
+@media (max-width: 680px) {
+  .app-header { height: 64px; padding: 0 20px; gap: 22px; }
+  .brand-name { font-size: 18px; }.header-end { display: none; }
+  .workspace { display: block; min-height: calc(100vh - 64px); }
+  .sidebar { padding: 10px 16px; border-right: none; border-bottom: 1px solid #273545; }
+  .sidebar-label, .shelf, .sidebar-bottom { display: none; }
+  .sidebar-nav { display: flex; }
+  .sidebar-nav button { width: auto; }
+  .main { padding: 22px 16px 32px; }
+  .hero { min-height: 265px; display: block; }
+  .hero-copy { padding: 30px 25px; }
+  .hero h1 { font-size: clamp(30px, 8vw, 42px); }
+  .hero p { font-size: 13px; max-width: 340px; }
+  .hero-art { position: absolute; top: 0; right: -60px; bottom: 0; width: 230px; min-height: 0; opacity: .18; }
+  .section-heading { margin-top: 28px; }
+  .library-panel { padding: 22px; }
+  .empty-state { flex-direction: column; text-align: center; gap: 18px; padding: 20px 0; }
+  .empty-symbol { flex-basis: 80px; width: 80px; height: 80px; }
+  .principle-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { *, *:before, *:after { transition: none !important; } }
 </style>
 </head>
 <body>
-<div class="shell">
-<header class="topbar">
-  <div class="brand"><div class="brand-logo">B</div>BENGAMES</div>
-  <nav class="nav"><button class="active">GAMES</button><button>SHOP</button><button>•••</button></nav>
-  <div class="topfill"></div><div class="icon">↓</div><div class="icon">♢</div>
-  <div class="profile"><div class="avatar">B</div><span><b>Ben</b><br><small class="status"><i class="dot"></i>Online</small></span></div>
+<header class="app-header">
+  <a class="brand" href="./" aria-label="BenGames home">
+    <span class="brand-mark" aria-hidden="true">B</span>
+    <span class="brand-name">Ben<span>Games</span></span>
+  </a>
+  <nav class="top-nav" aria-label="Main navigation"><span class="nav-current" aria-current="page">LIBRARY</span></nav>
+  <span class="header-end">SMALL GAMES. BIG FUN.</span>
 </header>
-
-<div class="gamebar">
-  <button class="allgames">▦ &nbsp;ALL GAMES</button>
-  <div class="chips">
-    <button class="chip gas active" data-game="gas">GS</button>
-    <button class="chip shake" data-game="shake">SS</button>
-  </div>
-</div>
-
-<div class="layout">
-<aside class="left">
-  <h4>Library</h4>
-  <button class="active"><span>All Games</span><span class="count">2</span></button>
-  <button><span>Favorites</span><span class="count">2</span></button>
-  <h4 style="margin-top:22px">Collections</h4>
-  <button><span>Simulation</span><span class="count">2</span></button>
-  <button><span>Ben Originals</span><span class="count">2</span></button>
-</aside>
-
-<main class="main">
-  <div class="hero-row">
-    <div class="hero-box"><div><strong>BEN ORIGINALS</strong><span>Explore your games ›</span></div></div>
-    <div class="hero-box"><div><strong>IN DEVELOPMENT</strong><span>2 projects in the launcher ›</span></div></div>
-  </div>
-
-  <div class="toolbar"><span>Sort by: <b>Featured⌄</b></span><span>2 games</span></div>
-
-  <div class="cards">
-    <article class="card selected" data-game="gas" tabindex="0" aria-label="Dez\'s Gas">
-      <img src="assets/dezs-gas-noir.svg" alt="Dez's Gas neon-noir pixel art of the nighttime forecourt">
-      <div class="star">★</div>
-      <div class="copy"><div class="logo gas">Dez\'s<br>Gas</div><p>Pixel Art · Gas Station Tycoon</p></div>
-    </article>
-
-    <article class="card" data-game="shake" tabindex="0" aria-label="ShakeStation">
-      <img src="assets/shakestation-studio.svg" alt="ShakeStation Studio burger and milkshake diner artwork">
-      <div class="star">★</div>
-      <div class="copy"><div class="logo shake">Shake<br>Station</div><p>Hands-On Cooking · Diner Tycoon</p></div>
-    </article>
-  </div>
-
-  <section class="detail">
-    <div class="detail-icon" id="detailIcon">GS</div>
+<div class="workspace">
+  <aside class="sidebar" aria-label="Library navigation">
     <div>
-      <h2 id="detailTitle">Gas Station</h2>
-      <p id="detailText">Run the station, manage risky customers, track known officers and rival gangs, and stay out of trouble.</p>
+      <p class="sidebar-label">Library</p>
+      <nav class="sidebar-nav" aria-label="Library views">
+        <button type="button" class="active" data-view="home" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-7h6v7"/></svg>
+          Home
+        </button>
+        <button type="button" data-view="library">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="1"/><rect x="14" y="4" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          All Games <span id="sideCount" class="nav-count">0</span>
+        </button>
+      </nav>
     </div>
-    <button class="play" id="play">▶ PLAY</button>
-  </section>
-</main>
-
-<aside class="social">
-  <div class="social-top"><input placeholder="Search friends"></div>
-  <div class="friends-scroll">
-    <div class="group">Playing · 2</div>
-    <div class="friend"><div class="mini">C</div><div class="fmeta"><div class="fname">Alex</div><div class="fstate">ShakeStation</div></div><div class="presence"></div></div>
-    <div class="friend"><div class="mini">Z</div><div class="fmeta"><div class="fname">Jordan</div><div class="fstate">Gas Station</div></div><div class="presence"></div></div>
-    <div class="group">Friends · 3</div>
-    <div class="friend away"><div class="mini">A</div><div class="fmeta"><div class="fname">Sam</div><div class="fstate">Away</div></div><div class="presence"></div></div>
-    <div class="friend"><div class="mini">J</div><div class="fmeta"><div class="fname">Mia</div><div class="fstate">Online</div></div><div class="presence"></div></div>
-    <div class="friend offline"><div class="mini">T</div><div class="fmeta"><div class="fname">Taylor</div><div class="fstate">Offline</div></div><div class="presence"></div></div>
-  </div>
-  <div class="chat">CHATS & GROUPS</div>
-</aside>
+    <div class="shelf">
+      <p class="sidebar-label">Your games</p>
+      <div id="shelfList" class="shelf-list"></div>
+      <p id="sidebarEmpty" class="sidebar-empty">Finished games will be added here when they are ready.</p>
+    </div>
+    <div class="sidebar-bottom">
+      <strong>Made to be played</strong>
+      No filler. Just fun little games worth coming back to.
+    </div>
+  </aside>
+  <main class="main" id="main">
+    <div class="inner">
+      <section class="hero" id="hero" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <span class="eyebrow">A new chapter for BenGames</span>
+          <h1 id="heroTitle">Smaller games.<br>Better games.</h1>
+          <p>We're making room for new ideas: simple to pick up, satisfying to play, and polished enough to feel complete.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-glow"></div>
+          <div class="art-frame"><i class="pixel one"></i><i class="pixel two"></i><i class="pixel three"></i></div>
+          <i class="spark a"></i><i class="spark b"></i>
+        </div>
+      </section>
+      <div class="section-heading">
+        <h2 id="libraryHeading">Your library</h2>
+        <span id="libraryCount" class="section-meta" aria-live="polite">0 games</span>
+      </div>
+      <section class="library-panel" aria-label="Games library">
+        <div class="library-tools" id="libraryTools" hidden>
+          <input class="search" id="search" type="search" placeholder="Search your games..." aria-label="Search games">
+        </div>
+        <div id="gameGrid" class="game-grid"></div>
+        <div class="empty-state" id="emptyState">
+          <div class="empty-symbol" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 23h24c7 0 11 5 13 13l3 11c1 6-5 9-10 6l-11-7H25l-11 7c-5 3-11 0-10-6l3-11c2-8 6-13 13-13Z"/><path d="M17 35h12M23 29v12"/><circle cx="43" cy="33" r="2"/><circle cx="49" cy="39" r="2"/></svg>
+          </div>
+          <div class="empty-copy">
+            <h3>Something good is in the works.</h3>
+            <p>The shelf is clear for now. New games will show up here when they're ready to play — not while they're still half-finished.</p>
+          </div>
+        </div>
+        <p id="noMatch" class="no-match" hidden>No games matched that search.</p>
+      </section>
+      <section class="principles" id="principles" aria-labelledby="principlesTitle">
+        <h2 id="principlesTitle">What comes next</h2>
+        <div class="principle-grid">
+          <article class="principle"><span>01 / QUICK TO START</span><h3>Jump right in</h3><p>Easy to understand in seconds, without a long tutorial.</p></article>
+          <article class="principle"><span>02 / ONE GREAT IDEA</span><h3>Keep it focused</h3><p>A strong core mechanic beats a pile of unfinished features.</p></article>
+          <article class="principle"><span>03 / MADE WITH CARE</span><h3>Polish first</h3><p>Responsive controls, clean visuals, and satisfying feedback.</p></article>
+        </div>
+      </section>
+      <footer class="footer">BenGames · An indie browser-game collection</footer>
+    </div>
+  </main>
 </div>
-</div>
-
 <script>
-const games={
-  gas:{title:"Dez\'s Gas",icon:"DG",text:"Run a pixel-art Route 6 gas station: scan real store items, fuel cars, manage stock, review fictional officer and gang dossiers, take risky private orders, and upgrade your business over multiple night shifts.",url:"https://focustap.github.io/BenGames/dezs-gas/"},
-  shake:{title:"ShakeStation",icon:"SS",text:"Run your own illustrated diner: drag real ingredients onto burgers, cook multiple patties, pour and mix milkshakes by hand, impress critics, and upgrade your restaurant across daily shifts.",url:"https://focustap.github.io/ShakeStation/"}
-};
-let selected="gas";
-function selectGame(id){
-  if(!games[id])return;selected=id;
-  document.getElementById("detailTitle").textContent=games[id].title;
-  document.getElementById("detailIcon").textContent=games[id].icon;
-  document.getElementById("detailText").textContent=games[id].text;
-  document.querySelectorAll(".chip").forEach(x=>x.classList.toggle("active",x.dataset.game===id));
-  document.querySelectorAll(".card").forEach(x=>x.classList.toggle("selected",x.dataset.game===id));
+'use strict';
+// Keep work-in-progress games in the source catalog, but never render or launch
+// them from the public library until published is explicitly set to true.
+const catalog = [
+  {
+    id: 'dez-gas',
+    title: "Dez's Gas",
+    genre: 'Gas station management',
+    cover: 'assets/dezs-gas-noir.svg',
+    url: 'dezs-gas/',
+    published: false
+  },
+  {
+    id: 'shake-station',
+    title: 'ShakeStation',
+    genre: 'Hands-on diner game',
+    cover: 'assets/shakestation-studio.svg',
+    url: 'https://focustap.github.io/ShakeStation/',
+    published: false
+  }
+];
+const released = catalog.filter(function(game) { return game.published === true; });
+const gameGrid = document.getElementById('gameGrid');
+const emptyState = document.getElementById('emptyState');
+const noMatch = document.getElementById('noMatch');
+const search = document.getElementById('search');
+
+function renderGames() {
+  const query = search.value.trim().toLowerCase();
+  const matches = released.filter(function(game) {
+    return (game.title + ' ' + game.genre).toLowerCase().includes(query);
+  });
+  gameGrid.replaceChildren();
+  matches.forEach(function(game) {
+    const link = document.createElement('a');
+    link.className = 'game-card';
+    link.href = game.url;
+    link.setAttribute('aria-label', 'Play ' + game.title);
+    const cover = document.createElement('img');
+    cover.src = game.cover;
+    cover.alt = '';
+    cover.loading = 'lazy';
+    const body = document.createElement('div');
+    body.className = 'game-card-body';
+    const title = document.createElement('h3');
+    title.textContent = game.title;
+    const genre = document.createElement('p');
+    genre.textContent = game.genre;
+    const play = document.createElement('small');
+    play.textContent = 'PLAY NOW →';
+    body.append(title, genre, play);
+    link.append(cover, body);
+    gameGrid.append(link);
+  });
+  emptyState.hidden = released.length !== 0;
+  noMatch.hidden = released.length === 0 || matches.length !== 0;
 }
-document.querySelectorAll("[data-game]").forEach(el=>{
-  el.addEventListener("click",()=>selectGame(el.dataset.game));
-  el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();selectGame(el.dataset.game)}})
+function showView(view) {
+  document.querySelectorAll('[data-view]').forEach(function(button) {
+    const active = button.dataset.view === view;
+    button.classList.toggle('active', active);
+    if (active) button.setAttribute('aria-current', 'page');
+    else button.removeAttribute('aria-current');
+  });
+  document.getElementById('hero').hidden = view !== 'home';
+  document.getElementById('principles').hidden = view !== 'home';
+  document.getElementById('libraryHeading').textContent = view === 'home' ? 'Your library' : 'All games';
+}
+document.getElementById('sideCount').textContent = String(released.length);
+document.getElementById('libraryCount').textContent = released.length + (released.length === 1 ? ' game' : ' games');
+document.getElementById('libraryTools').hidden = released.length === 0;
+document.getElementById('sidebarEmpty').hidden = released.length > 0;
+const shelf = document.getElementById('shelfList');
+released.forEach(function(game) {
+  const link = document.createElement('a');
+  link.className = 'shelf-link';
+  link.href = game.url;
+  link.textContent = game.title;
+  shelf.append(link);
 });
-document.getElementById("play").addEventListener("click",()=>{
-  const game=games[selected];
-  if(game.url){ window.location.href=game.url; return; }
-  alert(game.title+" is not playable yet.");
+document.querySelectorAll('[data-view]').forEach(function(button) {
+  button.addEventListener('click', function() { showView(button.dataset.view); });
 });
+search.addEventListener('input', renderGames);
+renderGames();
 </script>
 </body>
 </html>
